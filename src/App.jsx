@@ -27,8 +27,10 @@ function HomePage() {
 }
 
 function App() {
+  const basename = import.meta.env.DEV ? '/' : '/h5';
+  
   return (
-    <BrowserRouter basename="/h5">
+    <BrowserRouter basename={basename}>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/report" element={<ReportPage />} />

@@ -3,8 +3,8 @@ import react from '@vitejs/plugin-react'
 import postcsspxtoviewport from 'postcss-px-to-viewport-8-plugin'
 
 // https://vite.dev/config/
-export default defineConfig({
-  base: '/h5/',
+export default defineConfig(({ command }) => ({
+  base: command === 'serve' ? '/' : '/h5/',
   plugins: [react()],
   css: {
     postcss: {
@@ -31,4 +31,4 @@ export default defineConfig({
       }
     }
   }
-})
+}))
