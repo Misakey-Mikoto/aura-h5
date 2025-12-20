@@ -28,7 +28,7 @@ function HomePage() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/h5">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/report" element={<ReportPage />} />

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "h5:serve": "node h5-server.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },

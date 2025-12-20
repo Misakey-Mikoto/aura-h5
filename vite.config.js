@@ -4,6 +4,7 @@ import postcsspxtoviewport from 'postcss-px-to-viewport-8-plugin'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/h5/',
   plugins: [react()],
   css: {
     postcss: {
