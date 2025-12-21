@@ -52,7 +52,7 @@ function RadarChart({ conclusion }) {
 
   return (
     <div className="radar-container">
-      <img src="/radarbg.png" className="radar-bg" alt="雷达背景" />
+      <img src="/imgs/radarbg.png" className="radar-bg" alt="雷达背景" />
       <svg width="320" height="320" style={{ position: 'absolute' }}>
         <path
           d={pathData}
