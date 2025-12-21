@@ -889,9 +889,37 @@
     background-color: #FFFFFF;
 }
 
+/* 动画触发按钮 */
+.play-animation-btn {
+    padding: 6px 16px;
+    background: linear-gradient(135deg, #D4A574 0%, #C9A375 100%);
+    border: none;
+    border-radius: 16px;
+    font-size: 13px;
+    color: #FFFFFF;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(186, 129, 60, 0.2);
+}
+
+.play-animation-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(186, 129, 60, 0.3);
+}
+
+.play-animation-btn:active {
+    transform: translateY(0);
+}
+
 /* 响应式 */
 @media (max-width: 750px) {
     .container {
         width: 100%;
+    }
+    
+    .play-animation-btn {
+        font-size: 12px;
+        padding: 5px 12px;
     }
 }

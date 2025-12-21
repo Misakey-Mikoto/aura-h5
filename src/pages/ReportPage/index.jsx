@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import UserInfoCard from '../../components/UserInfoCard';
@@ -9,6 +9,7 @@ import FacialFeatures from '../../components/FacialFeatures';
 import ProportionAnalysis from '../../components/ProportionAnalysis';
 import SkinIssues from '../../components/SkinIssues';
 import References from '../../components/References';
+import FacialAnalysisAnimation from '../../components/FacialAnalysisAnimation';
 import './ReportPage.css';
 
 function ReportPage() {
@@ -19,6 +20,9 @@ function ReportPage() {
   const [showConclusionModal, setShowConclusionModal] = useState(false);
   const [showImageModal, setShowImageModal] = useState(false);
   const [modalImageUrl, setModalImageUrl] = useState('');
+  const [showFacialAnimation, setShowFacialAnimation] = useState(false);
+  const [hasPlayedAnimation, setHasPlayedAnimation] = useState(false);
+  const facialFeaturesRef = useRef(null);
 
   useEffect(() => {
     const id = searchParams.get('id') || 'cmg3x4qpi0002sqt1sj46yvhs';
@@ -37,6 +41,30 @@ function ReportPage() {
         setLoading(false);
       });
   }, [searchParams]);
+
+  useEffect(() => {
+    if (!facialFeaturesRef.current || hasPlayedAnimation) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasPlayedAnimation) {
+            setShowFacialAnimation(true);
+            setHasPlayedAnimation(true);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(facialFeaturesRef.current);
+
+    return () => {
+      if (facialFeaturesRef.current) {
+        observer.unobserve(facialFeaturesRef.current);
+      }
+    };
+  }, [data, hasPlayedAnimation]);
 
   const getSkinType = () => {
     const tZoneOil = data.analysisData.skin_data.find(item => item.skin === 7);
@@ -117,13 +145,20 @@ function ReportPage() {
         </div>
       </div>
 
-      <div className="report-card">
+      <div className="report-card" ref={facialFeaturesRef}>
         <div className="card-gradient-header"></div>
         <div className="card-title-container">
           <div className="card-title-left">
             <div className="title-decorator"></div>
             <div className="card-title">脸部特征</div>
           </div>
+          <button 
+            className="play-animation-btn"
+            onClick={() => setShowFacialAnimation(true)}
+            style={{ marginLeft: 'auto' }}
+          >
+            查看分析动画
+          </button>
         </div>
         <div className="card-content">
           <FacialFeatures partData={data.analysisData.part_data || []} />
@@ -184,6 +219,14 @@ function ReportPage() {
             <button className="image-close-button" onClick={() => setShowImageModal(false)}>✕</button>
           </div>
         </div>
+      )}
+
+      {showFacialAnimation && data?.analysisData?.analyse && data?.analysisData?.part_data && (
+        <FacialAnalysisAnimation
+          analyse={data.analysisData.analyse}
+          partData={data.analysisData.part_data}
+          onComplete={() => setShowFacialAnimation(false)}
+        />
       )}
     </div>
   );
