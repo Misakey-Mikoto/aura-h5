@@ -1,10 +1,43 @@
+import { useRef, useEffect, useState } from 'react';
+
 function ProportionAnalysis({ analyse, partData }) {
   const threeCourtPoints = JSON.parse(analyse.three_courts_points || '[]');
   const fiveEyesPoints = JSON.parse(analyse.five_eyes_points || '[]');
   
   const facePartData = partData.find(part => part.part === 1);
-  const originalWidth = facePartData?.width || 800;
-  const originalHeight = facePartData?.height || 1200;
+  const originalWidth = analyse.width || facePartData?.width || 888;
+  const originalHeight = analyse.height || facePartData?.height || 1155;
+
+  const imageRef = useRef(null);
+  const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    const updateSize = () => {
+      if (imageRef.current) {
+        const rect = imageRef.current.getBoundingClientRect();
+        setImageSize({ width: rect.width, height: rect.height });
+      }
+    };
+
+    updateSize();
+    window.addEventListener('resize', updateSize);
+    
+    const img = imageRef.current;
+    if (img && img.complete) {
+      updateSize();
+    } else if (img) {
+      img.addEventListener('load', updateSize);
+    }
+
+    return () => {
+      window.removeEventListener('resize', updateSize);
+      if (img) {
+        img.removeEventListener('load', updateSize);
+      }
+    };
+  }, [analyse.image]);
+
+  const scaleRatio = imageSize.width / originalWidth;
 
   return (
     <>
@@ -31,21 +64,21 @@ function ProportionAnalysis({ analyse, partData }) {
           <div className="decorative-line"></div>
         </div>
         <div className="user-image-container">
-          <img src={analyse.image} className="user-proportion-image" alt="用户照片" />
-          <div className="proportion-overlay">
+          <img ref={imageRef} src={analyse.image} className="user-proportion-image" alt="用户照片" />
+          <div className="proportion-overlay" style={{ width: `${imageSize.width}px`, height: `${imageSize.height}px` }}>
             {threeCourtPoints.map((point, index) => {
               if (index === 0 || !point || point.length < 2) return null;
               const yCoord = point[1] || 0;
               if (yCoord < 0) return null;
-              const topPercent = (yCoord / originalHeight) * 100;
-              return <div key={`h-${index}`} className="proportion-line" style={{ top: `${topPercent}%`, backgroundColor: '#22a7b3' }}></div>;
+              const topPx = yCoord * scaleRatio;
+              return <div key={`h-${index}`} className="proportion-line" style={{ top: `${topPx}px`, backgroundColor: '#22a7b3' }}></div>;
             })}
             {fiveEyesPoints.map((point, index) => {
               if (!point || point.length < 2) return null;
               const xCoord = point[0] || 0;
               if (xCoord < 0 || xCoord > originalWidth) return null;
-              const leftPercent = (xCoord / originalWidth) * 100;
-              return <div key={`v-${index}`} className="vertical-proportion-line" style={{ left: `${leftPercent}%`, backgroundColor: '#ff727b' }}></div>;
+              const leftPx = xCoord * scaleRatio;
+              return <div key={`v-${index}`} className="vertical-proportion-line" style={{ left: `${leftPx}px`, backgroundColor: '#ff727b' }}></div>;
             })}
           </div>
         </div>

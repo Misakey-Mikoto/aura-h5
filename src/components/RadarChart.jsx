@@ -12,9 +12,9 @@ function RadarChart({ conclusion }) {
     ];
   }, [conclusion]);
 
-  const centerX = 150;
-  const centerY = 150;
-  const maxRadius = 120;
+  const centerX = 160;
+  const centerY = 160;
+  const maxRadius = 110;
   const angleStep = (Math.PI * 2) / radarData.length;
 
   const getPoint = (index, value) => {
@@ -52,23 +52,8 @@ function RadarChart({ conclusion }) {
 
   return (
     <div className="radar-container">
-      <img src="/imgs/radar.png" className="radar-bg" alt="雷达背景" />
-      <svg width="300" height="300" style={{ position: 'absolute' }}>
-        {radarData.map((_, index) => {
-          const end = getEndPoint(index);
-          return (
-            <line
-              key={`line-${index}`}
-              x1={centerX}
-              y1={centerY}
-              x2={end.x}
-              y2={end.y}
-              stroke="rgba(224, 224, 224, 0.5)"
-              strokeWidth="1"
-            />
-          );
-        })}
-
+      <img src="/radarbg.png" className="radar-bg" alt="雷达背景" />
+      <svg width="320" height="320" style={{ position: 'absolute' }}>
         <path
           d={pathData}
           fill="rgba(253, 237, 217, 0.5)"

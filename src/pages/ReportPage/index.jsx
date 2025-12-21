@@ -10,6 +10,7 @@ import ProportionAnalysis from '../../components/ProportionAnalysis';
 import SkinIssues from '../../components/SkinIssues';
 import References from '../../components/References';
 import FacialAnalysisAnimation from '../../components/FacialAnalysisAnimation';
+import { fuzhiData } from '../../utils/issueCopy';
 import './ReportPage.css';
 
 function ReportPage() {
@@ -59,30 +60,44 @@ function ReportPage() {
   const getSkinType = () => {
     const tZoneOil = data.analysisData.skin_data.find(item => item.skin === 7);
     const uZoneOil = data.analysisData.skin_data.find(item => item.skin === 6);
-    let skinType = '混合性';
+    let skinType = '混合性肤质';
     if (tZoneOil && uZoneOil) {
       const tLevel = parseFloat(tZoneOil.level);
       const uLevel = parseFloat(uZoneOil.level);
-      if (tLevel > 0.5 && uLevel < 0.3) skinType = '混合性';
-      else if (tLevel > 0.5 && uLevel > 0.5) skinType = '油性';
-      else if (tLevel < 0.3 && uLevel < 0.3) skinType = '干性';
-      else skinType = '中性';
+      if (tLevel > 0.5 && uLevel < 0.3) skinType = '混合性肤质';
+      else if (tLevel > 0.5 && uLevel > 0.5) skinType = '油性肤质';
+      else if (tLevel < 0.3 && uLevel < 0.3) skinType = '干性肤质';
+      else skinType = '中性肤质';
     }
     return skinType;
   };
 
-  const getSkinTypeAdvice = (skinType) => {
-    const skinTypeAdviceMap = {
-      '干性': '建议使用滋润型护肤品深层保湿，选择温和型产品呵护屏障，全年坚持防晒，每天喝足八杯水。',
-      '油性': '建议调节水油平衡控制油脂分泌，选择质地清爽的产品，适度清理老废角质，全年坚持防晒。',
-      '中性': '建议温和清洁不损伤皮脂膜，做好基础保湿工作，全年坚持防晒，保持充足睡眠和均衡饮食。',
-      '混合性': '建议T区侧重控油与清洁，U区着重补水保湿，每天喝足八杯水，全年坚持防晒。'
-    };
-    return skinTypeAdviceMap[skinType] || skinTypeAdviceMap['混合性'];
+  const getSkinTypeData = (skinType) => {
+    const data = fuzhiData['肤质']?.[skinType];
+    if (!data) {
+      console.warn(`未找到肤质数据: ${skinType}，使用默认值`);
+      return fuzhiData['肤质']['混合性肤质'] || { name: '混合性肤质', description: '', care_tips: [] };
+    }
+    return data;
   };
 
-  const handleImageClick = (imageUrl) => {
-    setModalImageUrl(imageUrl);
+  const getSkinColorData = (skinColor) => {
+    const data = fuzhiData['肤色']?.[skinColor];
+    if (!data) {
+      console.warn(`未找到肤色数据: ${skinColor}，使用默认值`);
+      return { description: '保持良好的护肤习惯，注意防晒和保湿。' };
+    }
+    return data;
+  };
+
+  const handleImageClick = (imageData) => {
+    if (typeof imageData === 'object' && imageData.base && imageData.overlay) {
+      // 人像 + 标注图重叠
+      setModalImageUrl({ base: imageData.base, overlay: imageData.overlay });
+    } else {
+      // 单张图片
+      setModalImageUrl(imageData);
+    }
     setShowImageModal(true);
   };
 
@@ -99,8 +114,9 @@ function ReportPage() {
   }
 
   const skinType = getSkinType();
+  const skinTypeData = getSkinTypeData(skinType);
   const skinColor = data.analysisData.skinColorInfo?.name || '自然';
-  const skinColorDescription = data.analysisData.skinColorInfo?.description || '保持良好的护肤习惯，注意防晒和保湿。';
+  const skinColorData = getSkinColorData(skinColor);
 
   return (
     <div className="report-container">
@@ -127,10 +143,11 @@ function ReportPage() {
         <div className="card-content">
           <RadarChart conclusion={data.analysisData.conclusion} />
           <SkinTypeInfo
-            skinType={skinType}
+            skinType={skinTypeData.name}
             skinColor={skinColor}
-            skinColorDescription={skinColorDescription}
-            skinTypeAdvice={getSkinTypeAdvice(skinType)}
+            skinColorDescription={skinColorData.description}
+            skinTypeAdvice={skinTypeData.description}
+            careTips={skinTypeData.care_tips}
           />
         </div>
       </div>
@@ -173,21 +190,11 @@ function ReportPage() {
         </div>
       </div>
 
-      <div className="report-card">
-        <div className="card-gradient-header"></div>
-        <div className="card-title-container">
-          <div className="card-title-left">
-            <div className="title-decorator"></div>
-            <div className="card-title">肌肤问题</div>
-          </div>
-        </div>
-        <div className="card-content">
-          <SkinIssues
-            skinData={data.analysisData.skin_data}
-            onImageClick={handleImageClick}
-          />
-        </div>
-      </div>
+      <SkinIssues
+        skinData={data.analysisData.skin_data}
+        analyse={data.analysisData.analyse}
+        onImageClick={handleImageClick}
+      />
 
       <References />
 
@@ -207,7 +214,14 @@ function ReportPage() {
       {showImageModal && (
         <div className="modal-overlay" onClick={() => setShowImageModal(false)}>
           <div className="image-modal-content" onClick={e => e.stopPropagation()}>
-            <img src={modalImageUrl} alt="放大图片" />
+            {typeof modalImageUrl === 'object' && modalImageUrl.base && modalImageUrl.overlay ? (
+              <div className="overlay-image-container">
+                <img src={modalImageUrl.base} alt="人像" className="base-image" />
+                <img src={modalImageUrl.overlay} alt="标注" className="overlay-image" />
+              </div>
+            ) : (
+              <img src={modalImageUrl} alt="放大图片" />
+            )}
             <button className="image-close-button" onClick={() => setShowImageModal(false)}>✕</button>
           </div>
         </div>

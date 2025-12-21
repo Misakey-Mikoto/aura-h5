@@ -1,0 +1,634 @@
+/* 肌肤问题样式 - 基于原H5设计 */
+:root {
+  --primary-color: #31adda;
+}
+
+.mainContent {
+  margin-top: 25px;
+  padding: 0 12.5px;
+  color: #1a1a1a;
+}
+
+.childnode {
+  width: 100%;
+  margin-bottom: 35px;
+}
+
+/* 无数据状态 */
+.none_data {
+  width: 100%;
+  height: auto;
+  display: none;
+  margin-bottom: 40px;
+  border-bottom: 1px solid rgba(244, 178, 182, 0.4);
+  padding-bottom: 25px;
+}
+
+.none_data_title {
+  font-size: 16px;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.none_data_desc {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.6);
+  line-height: 20px;
+}
+
+/* 有数据状态 */
+.have_data {
+  width: 100%;
+}
+
+/* 标题样式 */
+.dim_title {
+  width: 100%;
+  font-size: 16px;
+  color: #1a1a1a;
+  margin: 35px auto 0;
+  text-align: left;
+}
+
+.dim_title span {
+  width: auto;
+  height: 30px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 30px;
+  padding: 0 10px;
+  margin: 0;
+  background: #000000;
+  color: #ffffff;
+  border-radius: 15px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* 等级介绍 */
+.level_intro {
+  width: 100%;
+  margin-top: 25px;
+}
+
+/* 分数显示 */
+.level_score {
+  width: 100%;
+  height: 40px;
+  margin: 5px auto;
+  position: relative;
+}
+
+.lsF {
+  left: 0;
+  bottom: 2.5px;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 25px;
+  font-size: 14px;
+  position: absolute;
+  margin-left: -12.5px;
+  box-sizing: border-box;
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* 等级条 */
+.level_where {
+  width: 99.9%;
+  height: 15px;
+  position: relative;
+  margin: 5px auto;
+  border-radius: 7.5px;
+  overflow: hidden;
+}
+
+.now {
+  margin-left: -7.5px;
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  position: absolute;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.level_where .lc {
+  width: 33.3%;
+  height: 15px;
+  float: left;
+}
+
+.level_color1 {
+  background: #fbbc45;
+  border-radius: 7.5px 0 0 7.5px;
+}
+
+.level_color2 {
+  background: #ff7e4d;
+}
+
+.level_color3 {
+  background: #fe4376;
+  border-radius: 0 7.5px 7.5px 0;
+}
+
+/* 等级名称 */
+.level_name {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.level_name .ln {
+  width: 33.3%;
+  float: left;
+  height: 15px;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  margin: 10px auto;
+  box-sizing: border-box;
+  border-left: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.level_n1 {
+  color: #fbbc45;
+}
+
+.level_n2 {
+  color: #ff7e4d;
+}
+
+.level_n3 {
+  color: #fe4376;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+/* 状态区域 */
+.level_status {
+  width: 100%;
+  margin-top: 25px;
+}
+
+.status_top {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.status_top_left {
+  float: left;
+  width: auto;
+  color: #ffffff;
+  font-weight: bold;
+  margin: auto;
+  height: 30px;
+  padding: 0 10px;
+  font-size: 14px;
+  background: #000000;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+ .status_top_right {
+  float: right;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.06);
+  color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+ }
+
+/* 图片展示区域 */
+.status_pic {
+  width: 100%;
+  margin: 25px auto;
+}
+
+.status_pic_v {
+  width: 100%;
+  text-align: center;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.pic_v {
+  width: 168px;
+  height: auto;
+  max-width: 100%;
+}
+
+.label_overlay {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 168px;
+  height: auto;
+  max-width: 100%;
+  pointer-events: none;
+}
+
+.status_zoom {
+  right: 15px;
+  bottom: 5px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.5);
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.zoom_bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.zoom_pic {
+  width: 20px;
+  height: 20px;
+}
+
+.status_pic_n {
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.status_pic_n span {
+  display: inline;
+  color: var(--primary-color, #31adda);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+ .status_pro {
+  width: 100%;
+  font-size: 12px;
+  line-height: 20px;
+  color: #1a1a1a;
+  margin: 15px auto 0;
+  text-align: justify;
+ }
+
+ .status_advice {
+  width: 100%;
+  font-size: 12px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.75);
+  margin: 10px auto 0;
+  text-align: justify;
+  white-space: pre-wrap;
+ }
+
+ .advice-container {
+  position: relative;
+  margin-top: 15px;
+ }
+
+ .advice-toggle-icon {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 14px;
+  color: var(--primary-color, #31adda);
+  cursor: pointer;
+  user-select: none;
+  padding: 4px 8px;
+  line-height: 1;
+ }
+
+ .status_pro,
+ .status_advice {
+  white-space: pre-wrap;
+ }
+
+ .clamp3 {
+  display: -webkit-box;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+ }
+
+ .expanded {
+  display: block;
+  overflow: visible;
+ }
+
+ .status_text_toggle {
+  width: 100%;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--primary-color, #31adda);
+  text-align: right;
+  cursor: pointer;
+  user-select: none;
+ }
+
+ .status_upgrade {
+  width: 100%;
+  height: 40px;
+  margin-top: 15px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.04);
+  color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+ }
+
+ .upgrade_icon {
+  width: 18px;
+  height: 18px;
+  margin-left: 8px;
+ }
+
+/* 面积占比样式 */
+.status_pic2 {
+  clear: both;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  margin: 25px auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sPic_area {
+  float: left;
+  font-size: 12px;
+}
+
+.sPic_area img {
+  width: 100px;
+  height: 100px;
+  display: block;
+}
+
+.sPic_num {
+  float: right;
+  margin: 25px auto;
+  font-size: 12px;
+}
+
+.sPic_num div {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.sPic_percent {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  margin-right: 5px;
+  border: 2px solid var(--primary-color, #31adda);
+}
+
+.sPic_percent span {
+  color: var(--primary-color, #31adda);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.sPic_per {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* 皱纹类型展示 */
+.status_pic3 {
+  clear: both;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  margin: 25px auto;
+}
+
+.status_pic3 .wrinkle_type {
+  float: left;
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+}
+
+.wrinkle_type img {
+  width: 60px;
+  height: 60px;
+  opacity: 0.5;
+  padding-top: 10px;
+  transition: all 0.3s ease;
+}
+
+.wrinkle_type.wrinkle_light img {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.wrinkle_type span {
+  font-size: 12px;
+  line-height: 30px;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+/* 黑眼圈样式 */
+.eyes_title {
+  width: 60%;
+  height: 30px;
+  display: flex;
+  font-size: 12px;
+  margin: 0 auto 10px;
+  align-items: center;
+  justify-content: space-between;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.eyes_tag {
+  width: 314px;
+  max-width: 100%;
+  margin: 0 auto;
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.rimEye {
+  width: 100%;
+  position: relative;
+}
+
+.rimBg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.rim {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: contain;
+}
+
+.rimT0 {
+  z-index: 444;
+}
+
+.rimType {
+  width: 100%;
+  display: flex;
+  margin-top: 15px;
+  justify-content: space-around;
+}
+
+.rtDesc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.rtDesc span {
+  margin-left: 10px;
+}
+
+.rtPic1,
+.rtPic2 {
+  width: 30px;
+  height: 5px;
+  background: #d5a87e;
+}
+
+.rtPic2 {
+  background: #b87fa0;
+}
+
+.rtPic3 {
+  width: 17.5px;
+  height: 3px;
+}
+
+/* 分隔线 */
+.between_line {
+  width: 100%;
+  margin-top: 25px;
+  margin-bottom: 35px;
+  border-bottom: 1px solid rgba(244, 178, 182, 0.4);
+}
+
+ .issue_modal_overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+ }
+
+ .issue_modal_content {
+  width: min(520px, 100%);
+  max-height: 80vh;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+ }
+
+ .issue_modal_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+ }
+
+ .issue_modal_title {
+  font-size: 14px;
+  color: #1a1a1a;
+ }
+
+ .issue_modal_close {
+  border: none;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 16px;
+  cursor: pointer;
+ }
+
+ .issue_modal_body {
+  padding: 14px;
+  overflow: auto;
+  max-height: calc(80vh - 48px);
+  box-sizing: border-box;
+ }
+
+ .issue_modal_paragraph {
+  font-size: 12px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.75);
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+ }
+
+ .issue_modal_process {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+ }
+
+ .issue_modal_process_item {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(49, 173, 218, 0.25);
+  color: rgba(0, 0, 0, 0.8);
+ }
+
+/* 响应式调整 */
+@media screen and (max-width: 375px) {
+  .mainContent {
+    padding: 0 10px;
+  }
+  
+  .eyes_tag {
+    width: 100%;
+  }
+}

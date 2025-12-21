@@ -1,4 +1,4 @@
-function SkinTypeInfo({ skinType, skinColor, skinColorDescription, skinTypeAdvice }) {
+function SkinTypeInfo({ skinType, skinColor, skinColorDescription, skinTypeAdvice, careTips }) {
   const colorTypes = ['透白', '白皙', '自然', '小麦', '暗沉', '黝黑'];
   const colorGradients = [
     ['#FAE6D9', '#FAE6D9'],
@@ -48,10 +48,27 @@ function SkinTypeInfo({ skinType, skinColor, skinColorDescription, skinTypeAdvic
       <div className="advice-container">
         <div className="advice-header">
           <div className="title-dot"></div>
-          <div className="advice-title">护理建议</div>
+          <div className="advice-title">肤质说明</div>
         </div>
         <div className="advice-text">{skinTypeAdvice}</div>
       </div>
+
+      {careTips && careTips.length > 0 && (
+        <>
+          <div className="divider"></div>
+          <div className="advice-container">
+            <div className="advice-header">
+              <div className="title-dot"></div>
+              <div className="advice-title">护理建议</div>
+            </div>
+            <div className="advice-text">
+              {careTips.map((tip, index) => (
+                <div key={index} style={{ marginBottom: '8px' }}>{tip}</div>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
