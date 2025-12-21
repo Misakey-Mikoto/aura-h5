@@ -43,32 +43,17 @@ function ReportPage() {
   }, [searchParams]);
 
   useEffect(() => {
-    if (!data || !facialFeaturesRef.current || hasPlayedAnimation) return;
+    if (!data || hasPlayedAnimation) return;
 
     const playParam = searchParams.get('play');
     const shouldAutoPlay = playParam === 'true';
 
-    if (!shouldAutoPlay) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasPlayedAnimation) {
-            setShowFacialAnimation(true);
-            setHasPlayedAnimation(true);
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    observer.observe(facialFeaturesRef.current);
-
-    return () => {
-      if (facialFeaturesRef.current) {
-        observer.unobserve(facialFeaturesRef.current);
-      }
-    };
+    if (shouldAutoPlay) {
+      setTimeout(() => {
+        setShowFacialAnimation(true);
+        setHasPlayedAnimation(true);
+      }, 100);
+    }
   }, [data, hasPlayedAnimation, searchParams]);
 
   const getSkinType = () => {

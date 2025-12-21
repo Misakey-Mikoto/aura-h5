@@ -21,6 +21,7 @@ const FacialAnalysisAnimation = ({ analyse, partData, onComplete }) => {
 
   useEffect(() => {
     if (!analyse || !partData || partData.length === 0) return;
+    if (hasStartedRef.current) return;
 
     const canvas = canvasRef.current;
     if (!canvas) {
@@ -579,6 +580,7 @@ const FacialAnalysisAnimation = ({ analyse, partData, onComplete }) => {
 
     return () => {
       clearAllTimeouts();
+      hasStartedRef.current = false;
     };
   }, [analyse, partData, onComplete]);
 
