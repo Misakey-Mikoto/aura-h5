@@ -43,7 +43,12 @@ function ReportPage() {
   }, [searchParams]);
 
   useEffect(() => {
-    if (!facialFeaturesRef.current || hasPlayedAnimation) return;
+    if (!data || !facialFeaturesRef.current || hasPlayedAnimation) return;
+
+    const playParam = searchParams.get('play');
+    const shouldAutoPlay = playParam === 'true';
+
+    if (!shouldAutoPlay) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -64,7 +69,7 @@ function ReportPage() {
         observer.unobserve(facialFeaturesRef.current);
       }
     };
-  }, [data, hasPlayedAnimation]);
+  }, [data, hasPlayedAnimation, searchParams]);
 
   const getSkinType = () => {
     const tZoneOil = data.analysisData.skin_data.find(item => item.skin === 7);
@@ -152,13 +157,15 @@ function ReportPage() {
             <div className="title-decorator"></div>
             <div className="card-title">脸部特征</div>
           </div>
-          <button 
-            className="play-animation-btn"
-            onClick={() => setShowFacialAnimation(true)}
-            style={{ marginLeft: 'auto' }}
-          >
-            查看分析动画
-          </button>
+          {import.meta.env.DEV && (
+            <button 
+              className="play-animation-btn"
+              onClick={() => setShowFacialAnimation(true)}
+              style={{ marginLeft: 'auto' }}
+            >
+              查看分析动画
+            </button>
+          )}
         </div>
         <div className="card-content">
           <FacialFeatures partData={data.analysisData.part_data || []} />
