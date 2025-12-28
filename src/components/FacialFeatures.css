@@ -57,16 +57,11 @@
   min-height: 120px;
   text-align: center;
   margin-bottom: 0;
-  padding: 20px 0;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-image: url('/imgs/partBg.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 .part-main-image img {

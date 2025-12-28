@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import './FacialFeatures.css';
+import FeatureCanvas from './FeatureCanvas';
 
-function FacialFeatures({ partData }) {
+function FacialFeatures({ partData, analyse }) {
   const selectedFeatures = {};
   partData.forEach(part => {
     switch (part.part) {
@@ -13,6 +14,16 @@ function FacialFeatures({ partData }) {
       case 6: selectedFeatures.nose = part.type; break;
     }
   });
+
+  // 五官类型与 part 编号的映射
+  const featurePartMap = {
+    'face': 1,
+    'eyebrow': 2,
+    'eye': 3,
+    'lip': 4,
+    'chin': 5,
+    'nose': 6
+  };
 
   const featureTypes = [
     {
@@ -168,9 +179,13 @@ function FacialFeatures({ partData }) {
               <div className="part-title-line"></div>
             </div>
             <div className="part-contain-content">
-              {selectedOption && (
+              {selectedOption && analyse && analyse.image && (
                 <div className="part-main-image">
-                  <img src={selectedOption.image} alt={selectedOption.name} />
+                  <FeatureCanvas 
+                    imageUrl={analyse.image}
+                    partData={partData}
+                    partType={featurePartMap[featureType.id]}
+                  />
                 </div>
               )}
               <div className="part-other-types">

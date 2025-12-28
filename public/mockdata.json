@@ -1,0 +1,198 @@
+{
+  "analyse": {
+    "image": "https://skinrun-api.oss-cn-shanghai.aliyuncs.com/face/crop/2025-12-18/176606403320061755977/1507050110.jpg",
+    "philtrum": 93,
+    "scale_five": "1.09:1.14:1.59:1.15:1.12",
+    "scale_gold": "67.09",
+    "gold_points": "[[262,651],[660,651],[467,954]]",
+    "scale_three": "0.85:1.16:1.10",
+    "five_eyes_points": "[[20,673],[179,654],[345,669],[577,669],[744,654],[908,671]]",
+    "three_courts_points": "[[486,205],[385,505],[380,935],[472,1344]]"
+  },
+  "lut_oss": [],
+  "dateline": 1766064041,
+  "skin_age": 25,
+  "darkspots": [],
+  "part_data": [
+    {
+      "part": 1,
+      "type": 6,
+      "ratio": 1,
+      "width": 888,
+      "height": 1155,
+      "points": "[[20,673],[27,787],[45,899],[71,1010],[114,1112],[181,1202],[270,1272],[367,1327],[472,1344],[576,1331],[671,1282],[760,1215],[827,1126],[870,1019],[892,904],[906,787],[908,671],[232,189],[346,203],[486,205],[677,194],[768,244],[886,453],[73,370],[127,265],[26,600],[904,606],[817,312],[634,211]]"
+    },
+    {
+      "part": 2,
+      "type": 6,
+      "ratio": 42,
+      "width": 292,
+      "height": 81,
+      "points": "[[93,546],[145,485],[225,465],[307,474],[385,505]]"
+    },
+    {
+      "part": 3,
+      "type": 3,
+      "ratio": 65,
+      "width": 166,
+      "height": 62,
+      "points": "[[179,654],[229,620],[292,622],[345,669],[288,682],[224,680]]"
+    },
+    {
+      "part": 4,
+      "type": 2,
+      "ratio": 0,
+      "width": 283,
+      "height": 141,
+      "points": "[[308,1099],[367,1061],[426,1035],[464,1047],[503,1034],[562,1060],[620,1097],[565,1145],[509,1167],[466,1172],[425,1167],[367,1146],[308,1099],[337,1100],[425,1088],[464,1091],[503,1087],[592,1098],[620,1097]]"
+    },
+    {
+      "part": 6,
+      "type": 2,
+      "ratio": 1,
+      "width": 169,
+      "height": 323,
+      "points": "[[462,631],[464,708],[465,783],[467,861],[380,935],[423,944],[467,954],[509,944],[549,935]]"
+    },
+    {
+      "part": 5,
+      "type": 5,
+      "ratio": 129,
+      "width": 799,
+      "height": 334,
+      "points": "[[71,1010],[114,1112],[181,1202],[270,1272],[367,1327],[472,1344],[576,1331],[671,1282],[760,1215],[827,1126],[870,1019]]"
+    }
+  ],
+  "skin_data": [
+    {
+      "skin": 1,
+      "level": "0.20",
+      "score": 80,
+      "number": 0,
+      "percent": "0.19",
+      "special": "[]",
+      "label_img": ""
+    },
+    {
+      "skin": 2,
+      "level": "0.11",
+      "score": 89,
+      "number": 0,
+      "percent": "0.15",
+      "special": "[3]",
+      "label_img": ""
+    },
+    {
+      "skin": 3,
+      "level": "0.48",
+      "score": 52,
+      "number": 15,
+      "percent": "0.30",
+      "special": "[]",
+      "label_img": "https://skinrun-api.oss-cn-shanghai.aliyuncs.com/face/crop/2025-12-18/176606403320061755977/pigment.png"
+    },
+    {
+      "skin": 4,
+      "level": "0.00",
+      "score": 100,
+      "number": 0,
+      "percent": "0.40",
+      "special": "[]",
+      "label_img": "https://skinrun-api.oss-cn-shanghai.aliyuncs.com/face/crop/2025-12-18/176606403320061755977/ance.png"
+    },
+    {
+      "skin": 5,
+      "level": "0.21",
+      "score": 79,
+      "number": 1,
+      "percent": "0.60",
+      "special": "[{\"left\":[]},{\"right\":[1]}]",
+      "label_img": "https://skinrun-api.oss-cn-shanghai.aliyuncs.com/face/crop/2025-12-18/176606403320061755977/eyeblack.png"
+    },
+    {
+      "skin": 6,
+      "level": "0.61",
+      "score": 39,
+      "number": 0,
+      "percent": "0.00",
+      "special": "[]",
+      "label_img": ""
+    },
+    {
+      "skin": 7,
+      "level": "0.60",
+      "score": 40,
+      "number": 0,
+      "percent": "0.00",
+      "special": "[]",
+      "label_img": ""
+    },
+    {
+      "skin": 8,
+      "level": "0.27",
+      "score": 73,
+      "number": 0,
+      "percent": "0.49",
+      "special": "[]",
+      "label_img": ""
+    },
+    {
+      "skin": 9,
+      "level": "0.52",
+      "score": 48,
+      "number": 60,
+      "percent": "0.00",
+      "special": "[]",
+      "label_img": "https://skinrun-api.oss-cn-shanghai.aliyuncs.com/face/crop/2025-12-18/176606403320061755977/blackhead.png"
+    },
+    {
+      "skin": 10,
+      "level": "0.30",
+      "score": 70,
+      "number": 0,
+      "percent": "0.00",
+      "special": "[]",
+      "label_img": ""
+    },
+    {
+      "skin": 11,
+      "level": null,
+      "score": 100,
+      "number": 0,
+      "percent": "0.00",
+      "special": "[{\"good\":\"https:\\/\\/skinrun-api.oss-cn-shanghai.aliyuncs.com\\/face\\/crop\\/2025-12-18\\/176606403320061755977\\/good_skin.png\"},{\"bad\":\"https:\\/\\/skinrun-api.oss-cn-shanghai.aliyuncs.com\\/face\\/crop\\/2025-12-18\\/176606403320061755977\\/bad_skin.png\"}]",
+      "label_img": ""
+    }
+  ],
+  "skin_type": 4,
+  "conclusion": [
+    {
+      "cid": 1,
+      "name": "细腻度",
+      "score": 76
+    },
+    {
+      "cid": 2,
+      "name": "匀净度",
+      "score": 64
+    },
+    {
+      "cid": 3,
+      "name": "紧致度",
+      "score": 89
+    },
+    {
+      "cid": 4,
+      "name": "耐受度",
+      "score": 73
+    },
+    {
+      "cid": 5,
+      "name": "水油平衡度",
+      "score": 79
+    }
+  ],
+  "skin_score": 74,
+  "exceed_user": "65.12",
+  "skin_content": "你的皮肤属于混合型。中间T区毛孔粗大，较油，而脸颊附近，眼睛周围较干，有细小皱纹。\r\n建议分部位保养，T区控油，干燥的部分要着重补水保湿\r\n用热敷促进新陈代谢，化妆水、精华、乳液、霜加强保湿，补足水分。"
+}

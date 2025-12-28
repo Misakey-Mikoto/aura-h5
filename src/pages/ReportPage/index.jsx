@@ -174,7 +174,10 @@ function ReportPage() {
           )}
         </div>
         <div className="card-content">
-          <FacialFeatures partData={data.analysisData.part_data || []} />
+          <FacialFeatures 
+            partData={data.analysisData.part_data || []} 
+            analyse={data.analysisData.analyse || {}}
+          />
         </div>
       </div>
 

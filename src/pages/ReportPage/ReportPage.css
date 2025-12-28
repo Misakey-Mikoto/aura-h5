@@ -193,7 +193,7 @@ report-card-main {
 }
 
 .card-content {
-    padding: 0 15px;
+    padding: 0 21px;
     position: relative;
     z-index: 1;
 }
@@ -417,10 +417,6 @@ report-card-main {
     height: 1px;
     background-color: #E5E5E5;
     margin: 16px 0;
-}
-
-.advice-container {
-    padding-top: 4px;
 }
 
 .advice-header {
