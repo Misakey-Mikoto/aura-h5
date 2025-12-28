@@ -120,6 +120,13 @@
     overflow: hidden;
 }
 
+report-card-main {
+    padding-bottom: 20px;
+    background-color: #FFFFFF;
+    position: relative;
+    overflow: hidden;
+}
+
 .card-gradient-header {
     position: absolute;
     top: 0;
@@ -171,7 +178,6 @@
     align-items: center;
     justify-content: center;
     gap: 40px;
-    padding: 20px 0;
 }
 
 .score-item {
@@ -179,14 +185,14 @@
 }
 
 .score-value {
-    font-size: 36px;
+    font-size: 32px;
     font-weight: 700;
     color: #BA813C;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .score-label {
-    font-size: 14px;
+    font-size: 13px;
     color: #666666;
 }
 

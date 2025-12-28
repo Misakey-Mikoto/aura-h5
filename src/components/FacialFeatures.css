@@ -1,0 +1,418 @@
+/* 面部特征组件样式 */
+
+/* 部位容器 */
+.part-container {
+  width: 100%;
+  margin: 0 auto 30px;
+  background: #fff;
+  border-radius: 6px;
+  border: 2px solid #f8e7ce;
+  overflow: visible;
+  position: relative;
+}
+
+/* 标题区域 - 渐变金色背景 */
+.part-container-title {
+  width: 100%;
+  height: 47px;
+  background: linear-gradient(90deg, #fbecd5 0%, #cba578 53.365%, #ead2b4 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 15px;
+  font-weight: 600;
+  position: relative;
+  border-radius: 5px;
+}
+
+.part-title-main {
+  color: #171717;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.part-title-sub {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* 标题装饰线条 */
+.part-title-line {
+  width: 20px;
+  height: 1px;
+  background: #000;
+  flex-shrink: 0;
+}
+
+/* 内容区域 */
+.part-contain-content {
+  padding: 0;
+}
+
+/* 主图展示 */
+.part-main-image {
+  width: 100%;
+  min-height: 120px;
+  text-align: center;
+  margin-bottom: 0;
+  padding: 20px 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-image: url('/imgs/partBg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.part-main-image img {
+  max-width: 157px;
+  max-height: 80px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+  border-radius: 20px;
+}
+
+/* 其他类型展示 */
+.part-other-types {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 15px 14px;
+  margin-bottom: 10px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.part-other-types::-webkit-scrollbar {
+  display: none;
+}
+
+.part-type-item {
+  flex-shrink: 0;
+  width: 69px;
+  height: 65px;
+  text-align: center;
+  padding: 0;
+  border-radius: 6px;
+  background: #fff;
+  border: 1px solid #f7e6d0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 6px 10px;
+  box-sizing: border-box;
+}
+
+.part-type-item.active {
+  background: #f7e6d0;
+  border: 1px solid #f7e6d0;
+}
+
+.part-type-item img {
+  width: auto;
+  max-width: 58px;
+  height: auto;
+  max-height: 20px;
+  object-fit: contain;
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.part-type-item-name {
+  font-size: 13px;
+  color: #666;
+  font-weight: 400;
+  line-height: 13px;
+  margin-top: auto;
+}
+
+.part-type-item.active .part-type-item-name {
+  color: #ba813c;
+  font-weight: 500;
+}
+
+/* 护肤建议按钮 */
+.skin-advice {
+  width: calc(100% - 28px);
+  height: 32px;
+  background: linear-gradient(90deg, #d5b58b 0%, #d0ae84 100%);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+  margin: 0 14px 14px;
+}
+
+.skin-advice::before {
+  content: '';
+  width: 16px;
+  height: 15.333px;
+  background-image: url('/imgs/adviceIcon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.skin-advice:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+/* 护肤建议弹窗 */
+.advice_modal_overlay {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.advice_modal_content {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 20px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.advice_modal_header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.advice_modal_title_decorator {
+  width: 4px;
+  height: 13px;
+  background: linear-gradient(135deg, #C79F70 0%, #FBECD2 57.27%, #C79F70 100%);
+  border-radius: 10px;
+  margin-right: 9px;
+}
+
+.advice_modal_title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #222222;
+}
+
+.advice_modal_body {
+  margin-bottom: 20px;
+}
+
+.advice_modal_paragraph {
+  font-size: 14px;
+  color: #666666;
+  line-height: 22px;
+  margin-bottom: 0;
+}
+
+.advice_modal_close {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #D4A574 0%, #C9A375 100%);
+  border: none;
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* 原有的特征展示样式 */
+.feature-container {
+  margin-bottom: 40px;
+}
+
+.selected-feature-display {
+  margin-bottom: 20px;
+}
+
+.feature-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 0 20px;
+}
+
+.decorative-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.5), transparent);
+}
+
+.feature-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  white-space: nowrap;
+}
+
+.feature-sub-name {
+  font-size: 14px;
+  color: #666;
+  white-space: nowrap;
+}
+
+.feature-sub-name.selected {
+  color: #d4af37;
+  font-weight: 500;
+}
+
+.selected-feature-image {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.feature-scroll {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 15px 12px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(212, 175, 55, 0.3) transparent;
+}
+
+.feature-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.feature-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.feature-scroll::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.3);
+  border-radius: 3px;
+}
+
+.feature-option {
+  flex-shrink: 0;
+  width: 90px;
+  text-align: center;
+  padding: 12px;
+  border-radius: 12px;
+  background: #f8f8f8;
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.feature-option.selected {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(244, 208, 63, 0.15) 100%);
+  border: 2px solid #d4af37;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+}
+
+.feature-image {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.feature-option-text {
+  font-size: 12px;
+  color: #333;
+  font-weight: 500;
+}
+
+.check-triangle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 24px 24px 0;
+  border-color: transparent #d4af37 transparent transparent;
+  border-radius: 0 12px 0 0;
+}
+
+.check-icon {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.3), transparent);
+  margin: 30px 0;
+}
+
+.advice-container {
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(244, 208, 63, 0.05) 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.advice-text {
+  font-size: 14px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 0.75);
+  text-align: justify;
+}
+
+/* 响应式调整 */
+@media screen and (max-width: 375px) {
+  .part-container-title {
+    height: 45px;
+    font-size: 14px;
+  }
+  
+  .part-main-image img {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .selected-feature-image {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .feature-option {
+    width: 80px;
+  }
+  
+  .feature-image {
+    width: 60px;
+    height: 60px;
+  }
+}

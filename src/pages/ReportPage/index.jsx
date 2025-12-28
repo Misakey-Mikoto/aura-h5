@@ -152,8 +152,7 @@ function ReportPage() {
         </div>
       </div>
 
-      <div className="report-card" ref={facialFeaturesRef}>
-        <div className="card-gradient-header"></div>
+      <div className="report-card-main" ref={facialFeaturesRef}>
         <div className="card-title-container">
           <div className="card-title-left">
             <div className="title-decorator"></div>
@@ -174,8 +173,7 @@ function ReportPage() {
         </div>
       </div>
 
-      <div className="report-card">
-        <div className="card-gradient-header"></div>
+      <div className="report-car-main">
         <div className="card-title-container">
           <div className="card-title-left">
             <div className="title-decorator"></div>
