@@ -156,7 +156,7 @@ function ReportPage() {
           />
         </div>
       </div>
-
+      <div className="divider"></div>
       <div className="report-card-main" ref={facialFeaturesRef}>
         <div className="card-title-container">
           <div className="card-title-left">

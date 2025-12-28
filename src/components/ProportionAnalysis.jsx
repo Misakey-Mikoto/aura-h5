@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
+import ProportionCard from './ProportionCard';
 
 function ProportionAnalysis({ analyse, partData }) {
   const threeCourtPoints = JSON.parse(analyse.three_courts_points || '[]');
@@ -41,7 +42,7 @@ function ProportionAnalysis({ analyse, partData }) {
 
   return (
     <>
-      <div className="proportion-card">
+      <ProportionCard title="五官比例" subtitle="完美比例参考">
         <div className="proportion-labels">
           <div className="proportion-label">
             <div className="proportion-dot" style={{ backgroundColor: '#22a7b3' }}></div>
@@ -53,16 +54,11 @@ function ProportionAnalysis({ analyse, partData }) {
           </div>
         </div>
         <img src="/imgs/bz_girl.png" className="reference-image" alt="参考比例" />
-      </div>
+      </ProportionCard>
 
       <div style={{ height: '10px' }}></div>
 
-      <div className="proportion-card">
-        <div className="user-proportion-header">
-          <div className="decorative-line"></div>
-          <span className="user-proportion-title">您的比例</span>
-          <div className="decorative-line"></div>
-        </div>
+      <ProportionCard title="您的比例">
         <div className="user-image-container">
           <img ref={imageRef} src={analyse.image} className="user-proportion-image" alt="用户照片" />
           <div className="proportion-overlay" style={{ width: `${imageSize.width}px`, height: `${imageSize.height}px` }}>
@@ -82,12 +78,12 @@ function ProportionAnalysis({ analyse, partData }) {
             })}
           </div>
         </div>
-      </div>
+      </ProportionCard>
 
-      <div className="divider"></div>
       <div className="advice-container">
         <div className="advice-text">三庭五眼是面部美学的黄金比例参考。了解自己的比例特点，可以通过化妆技巧进行调整和优化，打造更加协调的面部轮廓。</div>
       </div>
+      <div className="divider"></div>
     </>
   );
 }

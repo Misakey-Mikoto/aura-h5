@@ -1,0 +1,162 @@
+/* 比例卡片外层容器 */
+.proportion-card-wrapper {
+  width: 100%;
+  background: #fff;
+  border-radius: 6px;
+  border: 2px solid #f8e7ce;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+/* 标题栏 */
+.proportion-card-header {
+  width: 100%;
+  height: 47px;
+  background: linear-gradient(90deg, #fbecd5 0%, #cba578 53.365%, #ead2b4 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0 20px;
+}
+
+/* 标题栏装饰线 */
+.proportion-header-line {
+  width: 20px;
+  height: 1px;
+  background: #000;
+  flex-shrink: 0;
+}
+
+/* 标题文字容器 */
+.proportion-header-text {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* 主标题 */
+.proportion-title {
+  font-family: 'PingFang SC', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #171717;
+  line-height: normal;
+}
+
+/* 副标题 */
+.proportion-subtitle {
+  font-family: 'PingFang SC', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  line-height: normal;
+}
+
+/* 内容区域 */
+.proportion-card-content {
+  padding: 20px;
+}
+
+/* 比例标签容器 */
+.proportion-labels {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+  justify-content: center;
+}
+
+/* 单个标签 */
+.proportion-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* 标签圆点 */
+.proportion-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+/* 标签文字 */
+.proportion-label-text {
+  font-family: 'PingFang SC', sans-serif;
+  font-size: 13px;
+  color: #666;
+  line-height: normal;
+}
+
+/* 参考图片 */
+.reference-image {
+  width: 98px;
+  height: 122px;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+/* 用户比例标题区域 */
+.user-proportion-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+/* 装饰线 */
+.decorative-line {
+  width: 20px;
+  height: 1px;
+  background: #000;
+  flex-shrink: 0;
+}
+
+/* 用户比例标题 */
+.user-proportion-title {
+  font-family: 'PingFang SC', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #171717;
+  line-height: normal;
+}
+
+/* 用户图片容器 */
+.user-image-container {
+  position: relative;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+/* 用户比例图片 */
+.user-proportion-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 比例覆盖层 */
+.proportion-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+/* 水平比例线 */
+.proportion-line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+}
+
+/* 垂直比例线 */
+.vertical-proportion-line {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 100%;
+}

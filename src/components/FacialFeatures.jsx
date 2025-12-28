@@ -213,10 +213,12 @@ function FacialFeatures({ partData, analyse }) {
           </div>
         );
       })}
-      <div className="divider"></div>
       <div className="advice-container">
         <div className="advice-text">每个人的脸部特征都是独一无二的美。了解自己的特征，可以帮助你选择更适合的妆容和发型，展现最佳状态。</div>
       </div>
+
+      <div className="divider"></div>
+
 
       {adviceModal.show && (
         <div className="advice_modal_overlay" onClick={closeAdviceModal}>
