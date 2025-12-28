@@ -19,6 +19,7 @@ function ReportPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showConclusionModal, setShowConclusionModal] = useState(false);
+  const [showCareAdviceModal, setShowCareAdviceModal] = useState(false);
   const [showImageModal, setShowImageModal] = useState(false);
   const [modalImageUrl, setModalImageUrl] = useState('');
   const [showFacialAnimation, setShowFacialAnimation] = useState(false);
@@ -139,6 +140,10 @@ function ReportPage() {
             <div className="title-decorator"></div>
             <div className="card-title">肌肤五维</div>
           </div>
+          <button className="conclusion-button" onClick={() => setShowCareAdviceModal(true)}>
+            <span className="conclusion-button-text">护理建议</span>
+            <span className="conclusion-button-arrow">&gt;&gt;</span>
+          </button>
         </div>
         <div className="card-content">
           <RadarChart conclusion={data.analysisData.conclusion} />
@@ -205,6 +210,34 @@ function ReportPage() {
             </div>
             <div className="modal-text">{data.analysisData.skin_content}</div>
             <button className="modal-close-button" onClick={() => setShowConclusionModal(false)}>知道了</button>
+          </div>
+        </div>
+      )}
+
+      {showCareAdviceModal && (
+        <div className="modal-overlay" onClick={() => setShowCareAdviceModal(false)}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <div className="modal-header">
+              <div className="modal-title-decorator"></div>
+              <div className="modal-title">护理建议</div>
+            </div>
+            <div className="modal-text">
+              <div className="modal-section">
+                {/* <div className="modal-section-title">说明</div> */}
+                <div className="modal-section-content">{skinTypeData.description}</div>
+              </div>
+              {skinTypeData.care_tips && skinTypeData.care_tips.length > 0 && (
+                <div className="modal-section">
+                  {/* <div className="modal-section-title">建议</div> */}
+                  <div className="modal-section-content">
+                    {skinTypeData.care_tips.map((tip, index) => (
+                      <div key={index} style={{ marginBottom: '8px' }}>{tip}</div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+            <button className="modal-close-button" onClick={() => setShowCareAdviceModal(false)}>知道了</button>
           </div>
         </div>
       )}

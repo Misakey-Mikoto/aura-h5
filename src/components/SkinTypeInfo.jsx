@@ -43,32 +43,6 @@ function SkinTypeInfo({ skinType, skinColor, skinColorDescription, skinTypeAdvic
       <div className="skin-color-description-box">
         <div className="skin-color-description">{skinColorDescription}</div>
       </div>
-
-      <div className="divider"></div>
-      <div className="advice-container">
-        <div className="advice-header">
-          <div className="title-dot"></div>
-          <div className="advice-title">肤质说明</div>
-        </div>
-        <div className="advice-text">{skinTypeAdvice}</div>
-      </div>
-
-      {careTips && careTips.length > 0 && (
-        <>
-          <div className="divider"></div>
-          <div className="advice-container">
-            <div className="advice-header">
-              <div className="title-dot"></div>
-              <div className="advice-title">护理建议</div>
-            </div>
-            <div className="advice-text">
-              {careTips.map((tip, index) => (
-                <div key={index} style={{ marginBottom: '8px' }}>{tip}</div>
-              ))}
-            </div>
-          </div>
-        </>
-      )}
     </div>
   );
 }
