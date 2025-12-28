@@ -83,7 +83,6 @@ function ProportionAnalysis({ analyse, partData }) {
       <div className="advice-container">
         <div className="advice-text">三庭五眼是面部美学的黄金比例参考。了解自己的比例特点，可以通过化妆技巧进行调整和优化，打造更加协调的面部轮廓。</div>
       </div>
-      <div className="divider"></div>
     </>
   );
 }

@@ -172,6 +172,21 @@ report-card-main {
     z-index: 1;
 }
 
+.skin-issues-title {
+    overflow: visible;
+}
+
+.title-decoration-lemon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%) translateX(50%);
+    width: 200px;
+    height: auto;
+    opacity: 0.9;
+    pointer-events: none;
+}
+
 .card-title-left {
     display: flex;
     align-items: center;
@@ -776,7 +791,6 @@ report-card-main {
 
 .score-scale {
     display: flex;
-    height: 8px;
     border-radius: 4px;
     overflow: hidden;
 }

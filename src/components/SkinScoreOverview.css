@@ -1,0 +1,157 @@
+.skin-score-overview {
+  width: 100%;
+  padding: 0 12.5px;
+  margin-bottom: 35px;
+  position: relative;
+}
+
+.skin-score-overview::before {
+  content: '';
+  position: absolute;
+  left: 96px;
+  right: 50px;
+  top: 0;
+  bottom: 30px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.score-background-left {
+  position: absolute;
+  left: 96px;
+  width: calc((100% - 96px - 50px) / 3);
+  top: 0;
+  bottom: 30px;
+  background: rgba(249, 233, 208, 0.20);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.score-background-middle {
+  position: absolute;
+  left: calc(96px + (100% - 96px - 50px) / 3);
+  width: calc((100% - 96px - 50px) / 3);
+  top: 0;
+  bottom: 30px;
+  background: #ffffff;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.score-background-right {
+  position: absolute;
+  left: calc(96px + (100% - 96px - 50px) / 3 * 2);
+  width: calc((100% - 96px - 50px) / 3);
+  top: 0;
+  bottom: 30px;
+  background: rgba(213, 180, 140, 0.10);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.score-overview-title {
+  font-size: 15px;
+  color: #666;
+  margin-bottom: 20px;
+  font-family: 'PingFang SC', sans-serif;
+  font-weight: 500;
+}
+
+.score-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.score-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.score-item-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 80px;
+}
+
+.score-item-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.score-item-name {
+  font-size: 14px;
+  color: #222;
+  font-family: 'PingFang SC', sans-serif;
+  white-space: nowrap;
+}
+
+.score-item-bar-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.score-item-bar {
+  width: 100%;
+  height: 12px;
+  background: #f5f5f5;
+  border-radius: 6px;
+  position: relative;
+  overflow: visible;
+}
+
+.score-item-bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.3s ease;
+  background: linear-gradient(90deg, #FBEBD3 0%, #CBA679 100%);
+}
+
+.score-item-dot {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  background-image: url('/imgs/sliderCircle.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+}
+
+.score-item-value {
+  font-size: 14px;
+  color: #222;
+  font-family: 'PingFang SC', sans-serif;
+  font-weight: 500;
+  min-width: 44px;
+  text-align: right;
+}
+
+.score-scale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding: 0 50px 0 96px;
+  font-size: 14px;
+  color: #999;
+  font-family: 'PingFang SC', sans-serif;
+  position: relative;
+  z-index: 1;
+}
+
+@media screen and (max-width: 375px) {
+  .skin-score-overview {
+    padding: 0 10px;
+  }
+  
+  .score-scale {
+    padding: 0 44px 0 86px;
+  }
+}

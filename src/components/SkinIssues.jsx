@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getSkinResult } from '../utils/issueCopy';
 import IssueCard from './IssueCard';
+import SkinScoreOverview from './SkinScoreOverview';
 import './SkinIssues.css';
 
 function SkinIssues({ skinData, analyse, onImageClick }) {
@@ -588,6 +589,7 @@ function SkinIssues({ skinData, analyse, onImageClick }) {
 
   return (
     <div className="mainContent">
+      <SkinScoreOverview skinData={skinData} />
       {orderedIssues.map(item => renderIssue(item))}
       
       {descModal.show && (

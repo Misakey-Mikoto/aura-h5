@@ -156,9 +156,8 @@ function ReportPage() {
           />
         </div>
       </div>
-      <div className="divider"></div>
       <div className="report-card-main" ref={facialFeaturesRef}>
-        <div className="card-title-container">
+        <div className="card-title-container facial-features-title">
           <div className="card-title-left">
             <div className="title-decorator"></div>
             <div className="card-title">脸部特征</div>
@@ -172,6 +171,7 @@ function ReportPage() {
               查看分析动画
             </button>
           )}
+          <img src="/imgs/ningmeng.png" alt="" className="title-decoration-lemon" />
         </div>
         <div className="card-content">
           <FacialFeatures 
@@ -194,6 +194,14 @@ function ReportPage() {
             partData={data.analysisData.part_data || []}
           />
         </div>
+      </div>
+
+      <div className="card-title-container skin-issues-title">
+        <div className="card-title-left">
+          <div className="title-decorator"></div>
+          <div className="card-title">肌肤问题</div>
+        </div>
+        <img src="/imgs/ningmeng.png" alt="" className="title-decoration-lemon" />
       </div>
 
       <SkinIssues
