@@ -204,6 +204,10 @@ function ReportPage() {
 
       <References />
 
+      <div className="bottom-banner">
+        <div className="bottom-banner-text">以科技重塑美，以智慧遇见未来</div>
+      </div>
+
       {showConclusionModal && (
         <div className="modal-overlay" onClick={() => setShowConclusionModal(false)}>
           <div className="modal-content" onClick={e => e.stopPropagation()}>

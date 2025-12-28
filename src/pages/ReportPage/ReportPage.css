@@ -1013,6 +1013,38 @@ report-card-main {
     transform: translateY(0);
 }
 
+/* 底部横幅 */
+.bottom-banner {
+    width: 100vw;
+    height: 80px;
+    background-image: url('/imgs/bottomBarBg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+.bottom-banner-text {
+    width: 100%;
+    text-align: justify;
+    text-align-last: justify;
+    font-family: 'PingFang SC', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    letter-spacing: 0;
+    padding: 0 40px;
+    line-height: 1.5;
+}
+
 /* 响应式 */
 @media (max-width: 750px) {
     .container {
@@ -1022,5 +1054,14 @@ report-card-main {
     .play-animation-btn {
         font-size: 12px;
         padding: 5px 12px;
+    }
+    
+    .bottom-banner {
+        height: 60px;
+    }
+    
+    .bottom-banner-text {
+        font-size: 14px;
+        padding: 0 30px;
     }
 }

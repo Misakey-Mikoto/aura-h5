@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getSkinResult } from '../utils/issueCopy';
+import IssueCard from './IssueCard';
 import './SkinIssues.css';
 
 function SkinIssues({ skinData, analyse, onImageClick }) {
@@ -151,62 +152,43 @@ function SkinIssues({ skinData, analyse, onImageClick }) {
       );
     }
 
+    const adviceText = getAdviceText(item);
+
     return (
       <div key={item.skin} className="childnode">
-        <div className="have_data" style={{ marginTop: '0.6rem' }}>
-          <div className="dim_title"><span>黑头得分</span></div>
-          <div className="level_intro">
-            <div className="level_score">
-              <div className="lsF" style={{ left: getScorePosition(item.score), background: getScoreColor(item.score) }}>
-                {item.score}
-              </div>
+        <IssueCard
+          title="黑头"
+          scoreLabel="黑头得分"
+          scoreValue={item.score}
+          solutionContent={adviceText}
+        >
+          <div className="issue-score-bar">
+            <div className={`score-bar-segment score-bar-light ${item.score >= 67 ? 'score-bar-active' : ''}`}>
+              <span>轻度</span>
             </div>
-            <div className="level_where">
-              <div className="now" style={{ left: getScorePosition(item.score) }}></div>
-              <div className="lc level_color1"></div>
-              <div className="lc level_color2"></div>
-              <div className="lc level_color3"></div>
+            <div className={`score-bar-segment score-bar-medium ${item.score >= 34 && item.score < 67 ? 'score-bar-active' : ''}`}>
+              <span>中度</span>
             </div>
-            <div className="level_name">
-              <div className="ln level_n1">轻度</div>
-              <div className="ln level_n2">中度</div>
-              <div className="ln level_n3">重度</div>
+            <div className={`score-bar-segment score-bar-severe ${item.score < 34 ? 'score-bar-active' : ''}`}>
+              <span>重度</span>
             </div>
           </div>
-          <div className="level_status">
-            <div className="status_top">
-              <div className="status_top_left">黑头状况</div>
-              <div className="status_top_right" onClick={() => openDescModal('状况说明', getDescriptionText(item))}>
-                ?
-              </div>
-            </div>
-            <div className="status_pic">
-              <div className="status_pic_v">
-                <img className="pic_v" src="/imgs/heitou_girl.png" alt="黑头" />
-                {item.label_img && analyse?.image && (
-                  <div className="status_zoom" onClick={() => handleZoomClick(item.label_img)} style={{ backgroundImage: `url(${analyse.image})` }}>
-                    <img className="zoom_pic" src="/imgs/icon_magnifier.png" alt="放大" />
-                  </div>
-                )}
-              </div>
-              <div className="status_pic_n">数量：<span>{item.number || 0}</span>个</div>
-            </div>
-            {(() => {
-              const adviceText = getAdviceText(item);
-              if (!adviceText) return null;
-              const expanded = !!expandedAdviceBySkin?.[item.skin];
-              return (
-                <div className="advice-container">
-                  <div className={`status_advice ${expanded ? 'expanded' : 'clamp3'}`}>{adviceText}</div>
-                  <div className="advice-toggle-icon" onClick={() => toggleAdvice(item.skin)}>
-                    {expanded ? '▲' : '▼'}
-                  </div>
+          <div className="issue-status-row">
+            <div className="issue-status-dot"></div>
+            <span className="issue-status-text">黑头状况</span>
+          </div>
+          <div className="status_pic">
+            <div className="status_pic_v">
+              <img className="pic_v" src="/imgs/女孩-黑头.png" alt="黑头" />
+              {item.label_img && analyse?.image && (
+                <div className="status_zoom" onClick={() => handleZoomClick(item.label_img)} style={{ backgroundImage: `url(${analyse.image})` }}>
+                  <img className="zoom_pic" src="/imgs/icon_magnifier.png" alt="放大" />
                 </div>
-              );
-            })()}
+              )}
+            </div>
+            <div className="status_pic_n">数量：<span>{item.number || 0}</span>个</div>
           </div>
-        </div>
-        <div className="between_line"></div>
+        </IssueCard>
       </div>
     );
   };
@@ -223,62 +205,42 @@ function SkinIssues({ skinData, analyse, onImageClick }) {
       );
     }
 
-    const level = getSeverityLevel(item.score);
-    const poreImg = level === 1 ? '/imgs/maokong01.png' : level === 2 ? '/imgs/maokong02.png' : '/imgs/maokong03.png';
+    const poreImg = '/imgs/毛孔.png';
+    const adviceText = getAdviceText(item);
 
     return (
       <div key={item.skin} className="childnode">
-        <div className="have_data">
-          <div className="level_status">
-            <div className="status_top">
-              <div className="status_top_left">毛孔得分</div>
-              <div className="status_top_right" onClick={() => openDescModal('状况说明', getDescriptionText(item))}>
-                ?
-              </div>
+        <IssueCard
+          title="毛孔"
+          scoreLabel="毛孔得分"
+          scoreValue={item.score}
+          solutionContent={adviceText}
+        >
+          <div className="issue-score-bar">
+            <div className={`score-bar-segment score-bar-light ${item.score >= 67 ? 'score-bar-active' : ''}`}>
+              <span>轻度</span>
             </div>
-            <div className="level_intro">
-              <div className="level_score">
-                <div className="lsF" style={{ left: getScorePosition(item.score), background: getScoreColor(item.score) }}>
-                  {item.score}
-                </div>
-              </div>
-              <div className="level_where">
-                <div className="now" style={{ left: getScorePosition(item.score) }}></div>
-                <div className="lc level_color1"></div>
-                <div className="lc level_color2"></div>
-                <div className="lc level_color3"></div>
-              </div>
-              <div className="level_name">
-                <div className="ln level_n1">轻度</div>
-                <div className="ln level_n2">中度</div>
-                <div className="ln level_n3">重度</div>
-              </div>
+            <div className={`score-bar-segment score-bar-medium ${item.score >= 34 && item.score < 67 ? 'score-bar-active' : ''}`}>
+              <span>中度</span>
             </div>
-            <div className="status_pic2">
-              <div className="sPic_area">
-                <img src={poreImg} alt="毛孔" />
-              </div>
-              <div className="sPic_num">
-                <div className="sPic_percent"><span>{Math.round(parseFloat(item.percent || 0) * 100)}</span>%</div>
-                <div className="sPic_per">面积占比</div>
-              </div>
+            <div className={`score-bar-segment score-bar-severe ${item.score < 34 ? 'score-bar-active' : ''}`}>
+              <span>重度</span>
             </div>
-            {(() => {
-              const adviceText = getAdviceText(item);
-              if (!adviceText) return null;
-              const expanded = !!expandedAdviceBySkin?.[item.skin];
-              return (
-                <div className="advice-container">
-                  <div className={`status_advice ${expanded ? 'expanded' : 'clamp3'}`}>{adviceText}</div>
-                  <div className="advice-toggle-icon" onClick={() => toggleAdvice(item.skin)}>
-                    {expanded ? '▲' : '▼'}
-                  </div>
-                </div>
-              );
-            })()}
           </div>
-        </div>
-        <div className="between_line"></div>
+          <div className="issue-status-row">
+            <div className="issue-status-dot"></div>
+            <span className="issue-status-text">毛孔状况</span>
+          </div>
+          <div className="status_pic2">
+            <div className="sPic_area">
+              <img src={poreImg} alt="毛孔" />
+            </div>
+            <div className="sPic_num">
+              <div className="sPic_percent"><span>{Math.round(parseFloat(item.percent || 0) * 100)}</span>%</div>
+              <div className="sPic_per">面积占比</div>
+            </div>
+          </div>
+        </IssueCard>
       </div>
     );
   };
@@ -295,62 +257,43 @@ function SkinIssues({ skinData, analyse, onImageClick }) {
       );
     }
 
+    const adviceText = getAdviceText(item);
+
     return (
       <div key={item.skin} className="childnode">
-        <div className="have_data">
-          <div className="dim_title"><span>痤疮得分</span></div>
-          <div className="level_intro">
-            <div className="level_score">
-              <div className="lsF" style={{ left: getScorePosition(item.score), background: getScoreColor(item.score) }}>
-                {item.score}
-              </div>
+        <IssueCard
+          title="痤疮"
+          scoreLabel="痤疮得分"
+          scoreValue={item.score}
+          solutionContent={adviceText}
+        >
+          <div className="issue-score-bar">
+            <div className={`score-bar-segment score-bar-light ${item.score >= 67 ? 'score-bar-active' : ''}`}>
+              <span>轻度</span>
             </div>
-            <div className="level_where">
-              <div className="now" style={{ left: getScorePosition(item.score) }}></div>
-              <div className="lc level_color1"></div>
-              <div className="lc level_color2"></div>
-              <div className="lc level_color3"></div>
+            <div className={`score-bar-segment score-bar-medium ${item.score >= 34 && item.score < 67 ? 'score-bar-active' : ''}`}>
+              <span>中度</span>
             </div>
-            <div className="level_name">
-              <div className="ln level_n1">轻度</div>
-              <div className="ln level_n2">中度</div>
-              <div className="ln level_n3">重度</div>
+            <div className={`score-bar-segment score-bar-severe ${item.score < 34 ? 'score-bar-active' : ''}`}>
+              <span>重度</span>
             </div>
           </div>
-          <div className="level_status">
-            <div className="status_top">
-              <div className="status_top_left">痤疮状况</div>
-              <div className="status_top_right" onClick={() => openDescModal('状况说明', getDescriptionText(item))}>
-                ?
-              </div>
-            </div>
-            <div className="status_pic">
-              <div className="status_pic_v">
-                <img className="pic_v" src="/imgs/chuochuang_girl.png" alt="痤疮" />
-                {item.label_img && analyse?.image && (
-                  <div className="status_zoom" onClick={() => handleZoomClick(item.label_img)} style={{ backgroundImage: `url(${analyse.image})` }}>
-                    <img className="zoom_pic" src="/imgs/icon_magnifier.png" alt="放大" />
-                  </div>
-                )}
-              </div>
-              <div className="status_pic_n">数量：<span>{item.number || 0}</span>个</div>
-            </div>
-            {(() => {
-              const adviceText = getAdviceText(item);
-              if (!adviceText) return null;
-              const expanded = !!expandedAdviceBySkin?.[item.skin];
-              return (
-                <div className="advice-container">
-                  <div className={`status_advice ${expanded ? 'expanded' : 'clamp3'}`}>{adviceText}</div>
-                  <div className="advice-toggle-icon" onClick={() => toggleAdvice(item.skin)}>
-                    {expanded ? '▲' : '▼'}
-                  </div>
+          <div className="issue-status-row">
+            <div className="issue-status-dot"></div>
+            <span className="issue-status-text">痤疮状况</span>
+          </div>
+          <div className="status_pic">
+            <div className="status_pic_v">
+              <img className="pic_v" src="/imgs/女孩-痤疮.png" alt="痤疮" />
+              {item.label_img && analyse?.image && (
+                <div className="status_zoom" onClick={() => handleZoomClick(item.label_img)} style={{ backgroundImage: `url(${analyse.image})` }}>
+                  <img className="zoom_pic" src="/imgs/icon_magnifier.png" alt="放大" />
                 </div>
-              );
-            })()}
+              )}
+            </div>
+            <div className="status_pic_n">数量：<span>{item.number || 0}</span>个</div>
           </div>
-        </div>
-        <div className="between_line"></div>
+        </IssueCard>
       </div>
     );
   };
@@ -375,79 +318,50 @@ function SkinIssues({ skinData, analyse, onImageClick }) {
       wrinkleTypes = [];
     }
 
-    const wrinkleNameMap = {
-      1: '抬头纹',
-      2: '法令纹',
-      3: '眼角纹',
-      4: '脸颊细纹'
-    };
-    const wrinkleText = wrinkleTypes
-      .map((t) => wrinkleNameMap[t])
-      .filter(Boolean)
-      .join('、');
+    const adviceText = getAdviceText(item);
 
     return (
       <div key={item.skin} className="childnode">
-        <div className="have_data">
-          <div className="level_status">
-            <div className="status_top">
-              <div className="status_top_left">皱纹得分</div>
-              <div className="status_top_right" onClick={() => openDescModal('状况说明', getDescriptionText(item))}>
-                ?
-              </div>
+        <IssueCard
+          title="皱纹"
+          scoreLabel="皱纹得分"
+          scoreValue={item.score}
+          solutionContent={adviceText}
+        >
+          <div className="issue-score-bar">
+            <div className={`score-bar-segment score-bar-light ${item.score >= 67 ? 'score-bar-active' : ''}`}>
+              <span>轻度</span>
             </div>
-            <div className="level_intro">
-              <div className="level_score">
-                <div className="lsF" style={{ left: getScorePosition(item.score), background: getScoreColor(item.score) }}>
-                  {item.score}
-                </div>
-              </div>
-              <div className="level_where">
-                <div className="now" style={{ left: getScorePosition(item.score) }}></div>
-                <div className="lc level_color1"></div>
-                <div className="lc level_color2"></div>
-                <div className="lc level_color3"></div>
-              </div>
-              <div className="level_name">
-                <div className="ln level_n1">轻度</div>
-                <div className="ln level_n2">中度</div>
-                <div className="ln level_n3">重度</div>
-              </div>
+            <div className={`score-bar-segment score-bar-medium ${item.score >= 34 && item.score < 67 ? 'score-bar-active' : ''}`}>
+              <span>中度</span>
             </div>
-            <div className="status_pic3">
-              <div className={`wrinkle_type ${wrinkleTypes.includes(1) ? 'wrinkle_light' : ''}`}>
-                <img src="/imgs/zhouwen01.png" alt="抬头纹" />
-                <span>抬头纹</span>
-              </div>
-              <div className={`wrinkle_type ${wrinkleTypes.includes(2) ? 'wrinkle_light' : ''}`}>
-                <img src="/imgs/zhouwen02.png" alt="法令纹" />
-                <span>法令纹</span>
-              </div>
-              <div className={`wrinkle_type ${wrinkleTypes.includes(3) ? 'wrinkle_light' : ''}`}>
-                <img src="/imgs/zhouwen03.png" alt="眼角纹" />
-                <span>眼角纹</span>
-              </div>
-              <div className={`wrinkle_type ${wrinkleTypes.includes(4) ? 'wrinkle_light' : ''}`}>
-                <img src="/imgs/zhouwen04.png" alt="脸颊细纹" />
-                <span>脸颊细纹</span>
-              </div>
+            <div className={`score-bar-segment score-bar-severe ${item.score < 34 ? 'score-bar-active' : ''}`}>
+              <span>重度</span>
             </div>
-            {(() => {
-              const adviceText = getAdviceText(item);
-              if (!adviceText) return null;
-              const expanded = !!expandedAdviceBySkin?.[item.skin];
-              return (
-                <div className="advice-container">
-                  <div className={`status_advice ${expanded ? 'expanded' : 'clamp3'}`}>{adviceText}</div>
-                  <div className="advice-toggle-icon" onClick={() => toggleAdvice(item.skin)}>
-                    {expanded ? '▲' : '▼'}
-                  </div>
-                </div>
-              );
-            })()}
           </div>
-        </div>
-        <div className="between_line"></div>
+          <div className="issue-status-row">
+            <div className="issue-status-dot"></div>
+            <span className="issue-status-text">皱纹状况</span>
+          </div>
+          <div className="status_pic3">
+            <div className={`wrinkle_type ${wrinkleTypes.includes(1) ? 'wrinkle_light' : ''}`}>
+              <img src="/imgs/抬头纹.png" alt="抬头纹" />
+              <span>抬头纹</span>
+            </div>
+            <div className={`wrinkle_type ${wrinkleTypes.includes(2) ? 'wrinkle_light' : ''}`}>
+              <img src="/imgs/法令纹.png" alt="法令纹" />
+              <span>法令纹</span>
+            </div>
+            <div className={`wrinkle_type ${wrinkleTypes.includes(3) ? 'wrinkle_light' : ''}`}>
+              <img src="/imgs/眼角纹.png" alt="眼角纹" />
+              <span>眼角纹</span>
+            </div>
+            <div className={`wrinkle_type ${wrinkleTypes.includes(4) ? 'wrinkle_light' : ''}`}>
+              <img src="/imgs/脸颊纹.png" alt="脸颊细纹" />
+              <span>脸颊细纹</span>
+            </div>
+          </div>
+        </IssueCard>
       </div>
     );
   };
@@ -464,62 +378,43 @@ function SkinIssues({ skinData, analyse, onImageClick }) {
       );
     }
 
+    const adviceText = getAdviceText(item);
+
     return (
       <div key={item.skin} className="childnode">
-        <div className="have_data">
-          <div className="dim_title"><span>色斑得分</span></div>
-          <div className="level_intro">
-            <div className="level_score">
-              <div className="lsF" style={{ left: getScorePosition(item.score), background: getScoreColor(item.score) }}>
-                {item.score}
-              </div>
+        <IssueCard
+          title="色斑"
+          scoreLabel="色斑得分"
+          scoreValue={item.score}
+          solutionContent={adviceText}
+        >
+          <div className="issue-score-bar">
+            <div className={`score-bar-segment score-bar-light ${item.score >= 67 ? 'score-bar-active' : ''}`}>
+              <span>轻度</span>
             </div>
-            <div className="level_where">
-              <div className="now" style={{ left: getScorePosition(item.score) }}></div>
-              <div className="lc level_color1"></div>
-              <div className="lc level_color2"></div>
-              <div className="lc level_color3"></div>
+            <div className={`score-bar-segment score-bar-medium ${item.score >= 34 && item.score < 67 ? 'score-bar-active' : ''}`}>
+              <span>中度</span>
             </div>
-            <div className="level_name">
-              <div className="ln level_n1">轻度</div>
-              <div className="ln level_n2">中度</div>
-              <div className="ln level_n3">重度</div>
+            <div className={`score-bar-segment score-bar-severe ${item.score < 34 ? 'score-bar-active' : ''}`}>
+              <span>重度</span>
             </div>
           </div>
-          <div className="level_status">
-            <div className="status_top">
-              <div className="status_top_left">色斑状况</div>
-              <div className="status_top_right" onClick={() => openDescModal('状况说明', getDescriptionText(item))}>
-                ?
-              </div>
-            </div>
-            <div className="status_pic">
-              <div className="status_pic_v">
-                <img className="pic_v" src="/imgs/seban_girl.png" alt="色斑" />
-                {item.label_img && analyse?.image && (
-                  <div className="status_zoom" onClick={() => handleZoomClick(item.label_img)} style={{ backgroundImage: `url(${analyse.image})` }}>
-                    <img className="zoom_pic" src="/imgs/icon_magnifier.png" alt="放大" />
-                  </div>
-                )}
-              </div>
-              <div className="status_pic_n">数量：<span>{item.number || 0}</span>个</div>
-            </div>
-            {(() => {
-              const adviceText = getAdviceText(item);
-              if (!adviceText) return null;
-              const expanded = !!expandedAdviceBySkin?.[item.skin];
-              return (
-                <div className="advice-container">
-                  <div className={`status_advice ${expanded ? 'expanded' : 'clamp3'}`}>{adviceText}</div>
-                  <div className="advice-toggle-icon" onClick={() => toggleAdvice(item.skin)}>
-                    {expanded ? '▲' : '▼'}
-                  </div>
+          <div className="issue-status-row">
+            <div className="issue-status-dot"></div>
+            <span className="issue-status-text">色斑状况</span>
+          </div>
+          <div className="status_pic">
+            <div className="status_pic_v">
+              <img className="pic_v" src="/imgs/女孩-色斑.png" alt="色斑" />
+              {item.label_img && analyse?.image && (
+                <div className="status_zoom" onClick={() => handleZoomClick(item.label_img)} style={{ backgroundImage: `url(${analyse.image})` }}>
+                  <img className="zoom_pic" src="/imgs/icon_magnifier.png" alt="放大" />
                 </div>
-              );
-            })()}
+              )}
+            </div>
+            <div className="status_pic_n">数量：<span>{item.number || 0}</span>个</div>
           </div>
-        </div>
-        <div className="between_line"></div>
+        </IssueCard>
       </div>
     );
   };
@@ -538,60 +433,41 @@ function SkinIssues({ skinData, analyse, onImageClick }) {
 
     const level = getSeverityLevel(item.score);
     const sensitiveImg = level === 1 ? '/imgs/mingan01.png' : level === 2 ? '/imgs/mingan02.png' : '/imgs/mingan03.png';
+    const adviceText = getAdviceText(item);
 
     return (
       <div key={item.skin} className="childnode">
-        <div className="have_data">
-          <div className="level_status">
-            <div className="status_top">
-              <div className="status_top_left">敏感得分</div>
-              <div className="status_top_right" onClick={() => openDescModal('状况说明', getDescriptionText(item))}>
-                ?
-              </div>
+        <IssueCard
+          title="敏感"
+          scoreLabel="敏感得分"
+          scoreValue={item.score}
+          solutionContent={adviceText}
+        >
+          <div className="issue-score-bar">
+            <div className={`score-bar-segment score-bar-light ${item.score >= 67 ? 'score-bar-active' : ''}`}>
+              <span>轻度</span>
             </div>
-            <div className="level_intro">
-              <div className="level_score">
-                <div className="lsF" style={{ left: getScorePosition(item.score), background: getScoreColor(item.score) }}>
-                  {item.score}
-                </div>
-              </div>
-              <div className="level_where">
-                <div className="now" style={{ left: getScorePosition(item.score) }}></div>
-                <div className="lc level_color1"></div>
-                <div className="lc level_color2"></div>
-                <div className="lc level_color3"></div>
-              </div>
-              <div className="level_name">
-                <div className="ln level_n1">轻度</div>
-                <div className="ln level_n2">中度</div>
-                <div className="ln level_n3">重度</div>
-              </div>
+            <div className={`score-bar-segment score-bar-medium ${item.score >= 34 && item.score < 67 ? 'score-bar-active' : ''}`}>
+              <span>中度</span>
             </div>
-            <div className="status_pic2">
-              <div className="sPic_area">
-                <img src={sensitiveImg} alt="敏感" />
-              </div>
-              <div className="sPic_num">
-                <div className="sPic_percent"><span>{Math.round(parseFloat(item.percent || 0) * 100)}</span>%</div>
-                <div className="sPic_per">面积占比</div>
-              </div>
+            <div className={`score-bar-segment score-bar-severe ${item.score < 34 ? 'score-bar-active' : ''}`}>
+              <span>重度</span>
             </div>
-            {(() => {
-              const adviceText = getAdviceText(item);
-              if (!adviceText) return null;
-              const expanded = !!expandedAdviceBySkin?.[item.skin];
-              return (
-                <div className="advice-container">
-                  <div className={`status_advice ${expanded ? 'expanded' : 'clamp3'}`}>{adviceText}</div>
-                  <div className="advice-toggle-icon" onClick={() => toggleAdvice(item.skin)}>
-                    {expanded ? '▲' : '▼'}
-                  </div>
-                </div>
-              );
-            })()}
           </div>
-        </div>
-        <div className="between_line"></div>
+          <div className="issue-status-row">
+            <div className="issue-status-dot"></div>
+            <span className="issue-status-text">敏感状况</span>
+          </div>
+          <div className="status_pic2">
+            <div className="sPic_area">
+              <img src={sensitiveImg} alt="敏感" />
+            </div>
+            <div className="sPic_num">
+              <div className="sPic_percent"><span>{Math.round(parseFloat(item.percent || 0) * 100)}</span>%</div>
+              <div className="sPic_per">面积占比</div>
+            </div>
+          </div>
+        </IssueCard>
       </div>
     );
   };
@@ -632,80 +508,54 @@ function SkinIssues({ skinData, analyse, onImageClick }) {
         ));
     };
 
-    const darkCircleTypeNameMap = {
-      1: '色素型',
-      2: '血管型',
-      3: '结构型'
-    };
-    const mergedTypes = Array.from(new Set([...(eyeTypes.left || []), ...(eyeTypes.right || [])]));
-    const mergedTypeText = mergedTypes.map((t) => darkCircleTypeNameMap[t]).filter(Boolean).join('、');
+    const adviceText = getAdviceText(item);
 
     return (
       <div key={item.skin} className="childnode">
-        <div className="have_data">
-          <div className="level_status">
-            <div className="status_top">
-              <div className="status_top_left">黑眼圈得分</div>
-              <div className="status_top_right" onClick={() => openDescModal('状况说明', getDescriptionText(item))}>
-                ?
-              </div>
+        <IssueCard
+          title="黑眼圈"
+          scoreLabel="黑眼圈得分"
+          scoreValue={item.score}
+          solutionContent={adviceText}
+        >
+          <div className="issue-score-bar">
+            <div className={`score-bar-segment score-bar-light ${item.score >= 67 ? 'score-bar-active' : ''}`}>
+              <span>轻度</span>
             </div>
-            <div className="level_intro">
-              <div className="level_score">
-                <div className="lsF" style={{ left: getScorePosition(item.score), background: getScoreColor(item.score) }}>
-                  {item.score}
-                </div>
-              </div>
-              <div className="level_where">
-                <div className="now" style={{ left: getScorePosition(item.score) }}></div>
-                <div className="lc level_color1"></div>
-                <div className="lc level_color2"></div>
-                <div className="lc level_color3"></div>
-              </div>
-              <div className="level_name">
-                <div className="ln level_n1">轻度</div>
-                <div className="ln level_n2">中度</div>
-                <div className="ln level_n3">重度</div>
-              </div>
+            <div className={`score-bar-segment score-bar-medium ${item.score >= 34 && item.score < 67 ? 'score-bar-active' : ''}`}>
+              <span>中度</span>
             </div>
-            <div className="status_pic3">
-              <div className="eyes_title"><span>左眼</span> <span>右眼</span></div>
-              <div className="eyes_tag">
-                <div className="rimEye">
-                  <img className="rimBg" src="/imgs/hei_lian.png" alt="眼部" />
-                  <img className="rim rimT0" src="/imgs/hei_yan.png" alt="" />
-                  {renderEyeOverlays(eyeTypes.left, 'left')}
-                  {renderEyeOverlays(eyeTypes.right, 'right')}
-                </div>
-                <div className="rimType">
-                  <div className="rtDesc">
-                    <div className="rtPic1"></div><span>色素型</span>
-                  </div>
-                  <div className="rtDesc">
-                    <div className="rtPic2"></div><span>血管型</span>
-                  </div>
-                  <div className="rtDesc">
-                    <img className="rtPic3" src="/imgs/cpoint.png" alt="" /><span>结构型</span>
-                  </div>
-                </div>
-              </div>
+            <div className={`score-bar-segment score-bar-severe ${item.score < 34 ? 'score-bar-active' : ''}`}>
+              <span>重度</span>
             </div>
-            {(() => {
-              const adviceText = getAdviceText(item);
-              if (!adviceText) return null;
-              const expanded = !!expandedAdviceBySkin?.[item.skin];
-              return (
-                <div className="advice-container">
-                  <div className={`status_advice ${expanded ? 'expanded' : 'clamp3'}`}>{adviceText}</div>
-                  <div className="advice-toggle-icon" onClick={() => toggleAdvice(item.skin)}>
-                    {expanded ? '▲' : '▼'}
-                  </div>
-                </div>
-              );
-            })()}
           </div>
-        </div>
-        <div className="between_line"></div>
+          <div className="issue-status-row">
+            <div className="issue-status-dot"></div>
+            <span className="issue-status-text">黑眼圈状况</span>
+          </div>
+          <div className="status_pic3">
+            <div className="eyes_title"><span>左眼</span> <span>右眼</span></div>
+            <div className="eyes_tag">
+              <div className="rimEye">
+                <img className="rimBg" src="/imgs/hei_lian.png" alt="眼部" />
+                <img className="rim rimT0" src="/imgs/hei_yan.png" alt="" />
+                {renderEyeOverlays(eyeTypes.left, 'left')}
+                {renderEyeOverlays(eyeTypes.right, 'right')}
+              </div>
+              <div className="rimType">
+                <div className="rtDesc">
+                  <div className="rtPic1"></div><span>色素型</span>
+                </div>
+                <div className="rtDesc">
+                  <div className="rtPic2"></div><span>血管型</span>
+                </div>
+                <div className="rtDesc">
+                  <img className="rtPic3" src="/imgs/cpoint.png" alt="" /><span>结构型</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </IssueCard>
       </div>
     );
   };
