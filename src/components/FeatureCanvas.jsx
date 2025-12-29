@@ -44,15 +44,13 @@ function FeatureCanvas({ imageUrl, partData, partType }) {
         if (y > maxY) maxY = y;
       });
       
-      // 添加padding,鼻子部位特殊处理
-      let padding = 50;
-      let paddingX = padding;
-      let paddingY = padding;
+      // 添加padding,根据部位类型调整
+      let paddingX = 80;
+      let paddingY = 80;
       
-      if (partType === 6) {
-        // 鼻子:增加左右padding,减少上下padding
-        paddingX = 120;
-        paddingY = 20;
+      if (partType !== 1) {
+        // 非脸型部位(眼型、眉型、唇型、鼻子、下巴):增加左右padding
+        paddingX = 150;
       }
       
       minX = Math.max(0, minX - paddingX);
@@ -63,9 +61,10 @@ function FeatureCanvas({ imageUrl, partData, partType }) {
       const cropWidth = maxX - minX;
       const cropHeight = maxY - minY;
       
-      // 计算显示尺寸
+      // 计算显示尺寸,给四周留白
       const containerWidth = container.offsetWidth;
-      const ratio = containerWidth / cropWidth;
+      const displayWidth = containerWidth * 0.85; // 使用容器宽度的85%,留出15%的空白
+      const ratio = displayWidth / cropWidth;
       const aniWidth = cropWidth * ratio;
       const aniHeight = cropHeight * ratio;
 

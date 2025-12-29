@@ -68,6 +68,8 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding: 20px 15px;
+  box-sizing: border-box;
 }
 
 .part-main-image img {
