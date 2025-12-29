@@ -26,6 +26,12 @@
   border-radius: 5px 5px 0px 0px;
 }
 
+.part-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .part-title-main {
   color: #171717;
   font-size: 15px;

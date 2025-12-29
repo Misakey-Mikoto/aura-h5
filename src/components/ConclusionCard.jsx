@@ -14,12 +14,12 @@ function ConclusionCard({ skinScore, overallScore, skinAge, onShowModal }) {
       </div>
       <div className="card-content">
         <div className="score-container">
-          <div className="score-item">
+          <div>
             <div className="score-value">{skinScore || overallScore}</div>
             <div className="score-label">综合评分</div>
           </div>
           <div className="score-divider"></div>
-          <div className="score-item">
+          <div>
             <div className="score-value">{skinAge}</div>
             <div className="score-label">肌肤年龄</div>
           </div>

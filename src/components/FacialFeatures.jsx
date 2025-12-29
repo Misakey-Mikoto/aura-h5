@@ -57,13 +57,13 @@ function FacialFeatures({ partData, analyse }) {
       id: 'eyebrow',
       name: '眉型',
       options: [
-        { id: 1, name: '八字眉', image: '/imgs/brow/b1.png' },
-        { id: 2, name: '秋波眉', image: '/imgs/brow/b2.png' },
-        { id: 3, name: '野生眉', image: '/imgs/brow/b3.png' },
-        { id: 4, name: '新月眉', image: '/imgs/brow/b4.png' },
-        { id: 5, name: '一字眉', image: '/imgs/brow/b5.png' },
-        { id: 6, name: '英气眉', image: '/imgs/brow/b6.png' },
-        { id: 7, name: '柳叶眉', image: '/imgs/brow/b7.png' }
+        { id: 1, name: '八字眉', image: '/imgs/brow/八字眉.png' },
+        { id: 2, name: '秋波眉', image: '/imgs/brow/秋波眉.png' },
+        { id: 3, name: '野生眉', image: '/imgs/brow/野生眉.png' },
+        { id: 4, name: '新月眉', image: '/imgs/brow/新月眉.png' },
+        { id: 5, name: '一字眉', image: '/imgs/brow/一字眉小.png' },
+        { id: 6, name: '英气眉', image: '/imgs/brow/英气眉.png' },
+        { id: 7, name: '柳叶眉', image: '/imgs/brow/柳叶眉.png' }
       ]
     },
     {
@@ -140,8 +140,10 @@ function FacialFeatures({ partData, analyse }) {
           <div key={featureType.id} className="part-container">
             <div className="part-container-title">
               <div className="part-title-line"></div>
-              <span className="part-title-main">{featureType.name}</span>
-              {selectedOption && <span className="part-title-sub">{selectedOption.name}</span>}
+              <div className="part-title">
+                <span className="part-title-main">{featureType.name}</span>
+                {selectedOption && <span className="part-title-sub">{selectedOption.name}</span>}
+              </div>
               <div className="part-title-line"></div>
             </div>
             <div className="part-contain-content">

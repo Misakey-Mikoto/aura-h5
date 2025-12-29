@@ -496,18 +496,18 @@ function SkinIssues({ skinData, analyse, onImageClick }) {
       eyeTypes = { left: [], right: [] };
     }
 
-    const renderEyeOverlays = (sideTypes, side) => {
-      const map = {
-        1: `/imgs/hei_sesu_${side}.png`,
-        2: `/imgs/hei_xueguan_${side}.png`,
-        3: `/imgs/hei_jiegou_${side}.png`
-      };
-      return (sideTypes || [])
-        .filter((t) => map[t])
-        .map((t) => (
-          <img key={`${side}-${t}`} className={`rim rimT${t}`} src={map[t]} alt="" />
-        ));
-    };
+    const hasLeftEye = eyeTypes.left && eyeTypes.left.length > 0;
+    const hasRightEye = eyeTypes.right && eyeTypes.right.length > 0;
+    
+    let eyeBaseImage = '/imgs/assets/双眼.png';
+    if (hasLeftEye && !hasRightEye) {
+      eyeBaseImage = '/imgs/assets/左眼.png';
+    } else if (!hasLeftEye && hasRightEye) {
+      eyeBaseImage = '/imgs/assets/右眼.png';
+    }
+
+    // 收集所有黑眼圈类型
+    const allTypes = new Set([...eyeTypes.left, ...eyeTypes.right]);
 
     const adviceText = getAdviceText(item);
 
@@ -538,19 +538,16 @@ function SkinIssues({ skinData, analyse, onImageClick }) {
             <div className="eyes_title"><span>左眼</span> <span>右眼</span></div>
             <div className="eyes_tag">
               <div className="rimEye">
-                <img className="rimBg" src="/imgs/hei_lian.png" alt="眼部" />
-                <img className="rim rimT0" src="/imgs/hei_yan.png" alt="" />
-                {renderEyeOverlays(eyeTypes.left, 'left')}
-                {renderEyeOverlays(eyeTypes.right, 'right')}
+                <img className="rimBg" src={eyeBaseImage} alt="眼部" />
               </div>
               <div className="rimType">
-                <div className="rtDesc">
+                <div className={`rtDesc ${allTypes.has(1) ? 'active' : ''}`}>
                   <div className="rtPic1"></div><span>色素型</span>
                 </div>
-                <div className="rtDesc">
+                <div className={`rtDesc ${allTypes.has(2) ? 'active' : ''}`}>
                   <div className="rtPic2"></div><span>血管型</span>
                 </div>
-                <div className="rtDesc">
+                <div className={`rtDesc ${allTypes.has(3) ? 'active' : ''}`}>
                   <img className="rtPic3" src="/imgs/cpoint.png" alt="" /><span>结构型</span>
                 </div>
               </div>
